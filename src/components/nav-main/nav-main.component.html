@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home">
+        <img src="./assets/images/freshcart-logo.svg" alt="" >
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer"  aria-current="page" routerLink="home" routerLinkActive="active-link">Home</a>
+         </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="cart" routerLinkActive="active-link" >Cart</a>
+          </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="products" routerLinkActive="active-link" >Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="categories" routerLinkActive="active-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="brands" routerLinkActive="active-link" >Brands</a>
+          </li>
+    
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer"  aria-current="page" ><i class="fa-brands fa-instagram"></i></a>
+         </li>
+
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" ><i class="fa-brands fa-facebook"></i></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" ><i class="fa-brands fa-tiktok"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" ><i class="fa-brands fa-twitter"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" ><i class="fa-brands fa-linkedin"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active cursor-pointer" aria-current="page" ><i class="fa-brands fa-youtube"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-inline-block active cursor-pointer text-danger position-relative" routerLink="wishList" aria-current="page" >
+              <i class="fa-solid fa-heart"></i>
+              <span class="badge bg-danger p-1 position-absolute top-0 end-0">{{numOfWishListItems}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  d-inline-block active cursor-pointer text-success position-relative" routerLink="cart" aria-current="page" >
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="badge bg-danger p-1 position-absolute top-0 end-0">{{numOfCartItems}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer" (click)="logout()">Signout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

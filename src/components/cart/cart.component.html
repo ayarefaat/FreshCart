@@ -1,0 +1,51 @@
+<section class="my-5">
+    <div class="container">
+        
+       <div class="cart bg-main-light shadow rounded-2 p-5">
+        <div class="d-flex justify-content-between">
+            <h1>My Cart</h1>
+            <h5 routerLink="/allorders" class="text-main fw-bolder cursor-pointer">Go to Past orders</h5>
+        </div>
+        <div class="items d-flex justify-content-between mt-4">
+            <h4 class=" fw-bolder">Total Price: <span class="text-success">{{totalCartPrice | currency :'GBP'}}</span></h4>
+            <h4 class=" fw-bolder">Total no. of items : <span class="text-success">{{noOfCartItems}}</span></h4>
+        </div>
+        @if(!cartData){
+            <app-loader></app-loader>
+        }
+        <div class="row mt-4">
+           @for(item of cartData;track item.product._id){
+            <div class="item col-12 border-bottom border-2 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="image d-flex col-md-10">
+                        <img [src]="item.product.imageCover" class="w-25 me-3" [alt]="item.product.title">
+                        <div class="data d-flex flex-column justify-content-center ">
+                            <h6 class="fw-bolder">{{item.product.title}}</h6>
+                            <p class="text-success fw-bolder">{{item.price | currency :"GBP"}}</p>
+                            <span class="text-danger fw-bolder cursor-pointer" (click)="deleteItem(item.product._id)"><i class="fa-solid fa-trash"></i> Remove</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-flex justify-content-center ">
+                            <!-- @if(item.count>1){ -->
+                                <button class="btn btn-outline-success fw-bolder me-3" [disabled]="item.count==1"  (click)="updateQuantity(item.product._id,item.count-1)">-</button>
+                            <!-- } -->
+                            <span class="pt-1">{{item.count}}</span>
+                            <button class="btn btn-outline-success fw-bolder ms-3" (click)="updateQuantity(item.product._id,item.count+1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           }
+          @defer(when cartData){
+            @if(cartData.length>0){
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-outline-success w-25" (click)="clearCart()">Clear cart</button>
+                    <button class="btn btn-outline-success w-25" [routerLink]="['/checkout',cartID]">Check Out</button>
+                </div>
+              }
+          }
+         </div>
+       </div>
+    </div>
+</section>

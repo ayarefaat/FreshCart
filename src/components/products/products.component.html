@@ -1,0 +1,89 @@
+<section class="my-5">
+    <div class="container">
+       @if(!productData){
+        <app-loader></app-loader>
+       }
+        <div class="row my-4">
+            @for(product of productData ;track product._id){
+             <div class=" col-sm-6 col-md-4 col-lg-3 col-xl-2  p-2">
+                 <div class="product rounded-2 p-2">
+        
+                    <div class="cursor-pointer" [routerLink]="['/product-details/',product._id]">
+                         <div class="product-img">
+                             <img [src]="product.imageCover" class="w-100 rounded-2" [alt]="product.title">
+                            </div>
+                    </div>
+        
+                         <div class="product-caption">
+                             <h2 class="fs-6 text-main">{{product.category.name}}</h2>
+                             <h1 class="fs-6 fw-bold">{{product.title.split(' ').splice(0,2).join(' ')}}</h1>
+                             <div>
+                                 <div class="d-flex justify-content-between">
+                                     <span>{{product.price}}EGP</span>
+                                     <span class="heart fs-4 cursor-pointer" [ngClass]="{'text-danger':product.isAdded}" (click)="addToWishList(product._id,$index)" ><i class="fa-solid fa-heart"></i></span>
+                                 </div>
+                                 <div class="small">
+                                     @for(star of [1,2,3,4,5].slice(0,product.ratingsAverage) ;track $index){
+                                         <span class="rating-color"><i class="fa-solid fa-star"></i></span>
+                                     }
+                                     @if(product.ratingsAverage%1 !==0){
+                                         <span class="rating-color"><i class="fa-solid fa-star-half-stroke"></i></span>
+                                     }
+                                     <span>{{product.ratingsAverage}}</span>
+                                 </div>
+                             </div>
+                         </div>
+                     <button class="btn-main w-100 mt-1" (click)="addToCart(product._id)">Add to cart +</button>
+                 </div>
+             </div>
+            }
+            @if(productData){
+                <div class="mt-2" [ngClass]="{'d-none':isLoaded}" >
+                    <span class="arrow cursor-pointer rounded-circle bg-warning text-center d-block mx-auto " #products (click)="getSecondPageOfProduct()"> <i class="fa fa-chevron-down fa-bounce " aria-hidden="true"></i></span>
+                    </div>
+                    @defer(on interaction (products)){
+                       <!-- <div class="row "> -->
+                           @for(product of productDataPage2 ;track product._id){
+                            <div class=" col-sm-6 col-md-4 col-lg-3 col-xl-2  p-2">
+                                <div class="product rounded-2 p-2">
+                       
+                                   <div class="cursor-pointer" [routerLink]="['/product-details/',product._id]">
+                                        <div class="product-img">
+                                            <img [src]="product.imageCover" class="w-100 rounded-2" [alt]="product.title">
+                                           </div>
+                                   </div>
+                       
+                                        <div class="product-caption">
+                                            <h2 class="fs-6 text-main">{{product.category.name}}</h2>
+                                            <h1 class="fs-6 fw-bold">{{product.title.split(' ').splice(0,2).join(' ')}}</h1>
+                                            <div>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>{{product.price}}EGP</span>
+                                                    <span class="heart fs-4" (click)="addToWishList(product._id,$index)" ><i class="fa-solid fa-heart"></i></span>
+                                                </div>
+                                                <div class="small">
+                                                    @for(star of [1,2,3,4,5].slice(0,product.ratingsAverage) ;track $index){
+                                                        <span class="rating-color"><i class="fa-solid fa-star"></i></span>
+                                                    }
+                                                    @if(product.ratingsAverage%1 !==0){
+                                                        <span class="rating-color"><i class="fa-solid fa-star-half-stroke"></i></span>
+                                                    }
+                                                    <span>{{product.ratingsAverage}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <button class="btn-main w-100 mt-1" (click)="addToCart(product._id)">Add to cart +</button>
+                                </div>
+                            </div>
+                           }
+                        <!-- </div> -->
+                    }@placeholder() {
+                       <p class="mb-0 text-center mt-2 fw-bolder lead">Click to get more Products</p>
+                    }@loading(minimum 3s) {
+                       <h5 class="fw-bolder mt-3 text-center"><i class="fa-solid fa-spinner fa-spin fa-2xl"></i></h5>
+                    }
+            }
+         </div>
+        
+    </div>
+</section>

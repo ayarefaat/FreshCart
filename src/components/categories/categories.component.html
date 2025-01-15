@@ -1,0 +1,21 @@
+<section class="categories my-3">
+    <div class="container">
+        <div class="row">
+            @if(!categoryData){
+                <app-loader></app-loader>
+            }
+           @for(category of categoryData;track category._id){
+            <div class="item col-12 col-lg-4 col-md-6  p-2" [routerLink]="['/sub-categories/',category._id,category.name]">
+               <div class="inner border border-2 rounded-2">
+                <div class="image">
+                    <img [src]="category.image" alt="" class="fit w-100 rounded-2">
+                </div>
+                <div class="p-3 d-flex justify-content-center align-items-center">
+                    <h4 class="fw-bolder">{{category.name}}</h4>
+                </div>
+               </div>
+            </div>
+           }
+        </div>
+    </div>
+</section>

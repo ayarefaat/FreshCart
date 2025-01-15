@@ -1,0 +1,21 @@
+<section class="brands my-3">
+    <div class="container">
+        <h2 class="fw-bolder text-center my-3">All Brands</h2>
+        <div class="row">
+          @for(brand of brandsData;track brand._id){
+            <div class="item col-lg-3 col-md-4 p-2 cursor-pointer" [routerLink]="['/specific-brand/',brand._id]">
+                <div class="inner border border-2">
+                    <div class="image">
+                        <img [src]="brand.image" [alt]="brand.name" class="w-100">
+                    </div>
+                    <div class="desc">
+                        <p class="mb-0 fw-bolder text-center p-3">
+                            {{brand.name}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+          }
+        </div>
+    </div>
+</section>

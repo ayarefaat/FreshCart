@@ -1,0 +1,17 @@
+<section class="my-5">
+    <div class="container">
+        <div class="specific-brand col-md-6 bg-light p-2 m-auto">
+            @if(!brandData){
+                <app-loader></app-loader>
+            }
+           @defer (when brandData) {
+            <div class="image">
+                <img [src]="brandData.image" class="w-100" [alt]="brandData.name">
+            </div>
+            <div class="data">
+                <h3 class="fw-bolder mt-2 text-center">{{brandData.name}}</h3>
+            </div>
+           }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,87 @@
+<section class="bg-main-light p-3 my-5 rounded-2 mx-auto w-75 shadow">
+    <h1 class="text-main fs-1 fw-bold">Register Now</h1>
+    @if(resText&&resText!=='success'){
+        <p class="mb-0 mt-3 alert alert-danger fw-bold mx-auto">{{resText}}</p>
+    }@else if(resText&&resText==='success'){
+        <p class="mb-0 mt-3 alert alert-success text-success fw-bold mx-auto">{{resText}}</p>
+    }
+    <form [formGroup]="registerForm" class="py-3" (ngSubmit)="registerUser()">
+        <div class="my-3">
+            <label class="mb-2" for="name"><span class="text-danger">*</span>Name: </label>
+            <input [ngClass]="{
+                'is-valid':!registerForm.get('name')?.errors &&( registerForm.get('name')?.touched ||  registerForm.get('name')?.dirty),
+                'is-invalid':registerForm.get('name')?.errors&& ( registerForm.get('name')?.touched ||  registerForm.get('name')?.dirty)
+            }" id="name" type="text" class="form-control" formControlName="name" placeholder="Ex:Aya">
+            @if(registerForm.get('name')?.errors&& registerForm.get('name')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(registerForm.get('name')?.getError('required')){<p class="m-0">Name is required</p>}
+                    @else if(registerForm.get('name')?.getError('minlength')){<p class="m-0">Name length must be at least 3</p>}
+                    @else if(registerForm.get('name')?.getError('maxlength')){<p class="m-0">Name length must be max 10</p>}
+                </div>
+
+            }
+        </div>
+        <div class="my-3">
+            <label class="mb-2" for="email"><span class="text-danger">*</span>Email: </label>
+            <input [ngClass]="{
+                'is-valid':!registerForm.get('email')?.errors &&( registerForm.get('email')?.touched ||  registerForm.get('email')?.dirty),
+                'is-invalid':registerForm.get('email')?.errors&& ( registerForm.get('email')?.touched ||  registerForm.get('email')?.dirty)
+            }" id="email" type="text" class="form-control" formControlName="email" placeholder="Ex:email@gmail.com">
+            @if(registerForm.get('email')?.errors&& registerForm.get('email')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(registerForm.get('email')?.getError('required')){<p class="m-0">Email is required</p>}
+                    @else if(registerForm.get('email')?.getError('email')){<p class="m-0">Email format not correct</p>}
+                </div>
+
+            }
+        </div>
+        <div class="my-3">
+            <label class="mb-2" for="password"><span class="text-danger">*</span>Password: </label>
+            <input [ngClass]="{
+                'is-valid':!registerForm.get('password')?.errors &&( registerForm.get('password')?.touched ||  registerForm.get('password')?.dirty),
+                'is-invalid':registerForm.get('password')?.errors&& ( registerForm.get('password')?.touched ||  registerForm.get('password')?.dirty)
+            }" id="password" type="password" class="form-control" formControlName="password">
+            @if(registerForm.get('password')?.errors&& registerForm.get('password')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(registerForm.get('password')?.getError('required')){<p class="m-0">password is required</p>}
+                    @else if(registerForm.get('password')?.getError('pattern')){<p class="m-0">password length must be at least 6</p>}
+                </div>
+
+            }
+        </div>
+        <div class="my-3">
+            <label class="mb-2" for="rePassword"><span class="text-danger">*</span>rePassword: </label>
+            <input [ngClass]="{
+                'is-valid':!registerForm.get('rePassword')?.errors &&( registerForm.get('rePassword')?.touched ||  registerForm.get('rePassword')?.dirty),
+                'is-invalid':registerForm.get('rePassword')?.errors&& ( registerForm.get('rePassword')?.touched ||  registerForm.get('rePassword')?.dirty)
+            }" id="rePassword" type="password" class="form-control" formControlName="rePassword">
+            @if(registerForm.getError('missMatch')&& registerForm.get('rePassword')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(registerForm.get('rePassword')?.getError('required')){<p class="m-0">rePassword is required</p>}
+                    @else if(registerForm.get('rePassword')?.getError('pattern')){<p class="m-0">rePassword length must be at least 6</p>}
+                    @else{<p class="m-0">Confirm password is not correct</p>}
+                </div>
+
+            }
+        </div>
+        <div class="my-3">
+            <label class="mb-2" for="phone"><span class="text-danger">*</span>Phone: </label>
+            <input [ngClass]="{
+                'is-valid':!registerForm.get('phone')?.errors &&( registerForm.get('phone')?.touched ||  registerForm.get('phone')?.dirty),
+                'is-invalid':registerForm.get('phone')?.errors&& ( registerForm.get('phone')?.touched ||  registerForm.get('phone')?.dirty)
+            }" id="phone" type="tel" class="form-control" formControlName="phone">
+            @if(registerForm.get('phone')?.errors&& registerForm.get('phone')?.touched){
+
+            <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                @if(registerForm.get('phone')?.getError('required')){<p class="m-0">phone is required</p>}
+                @else if(registerForm.get('phone')?.getError('pattern')){<p class="m-0">phone number is not valid</p>}
+            </div>
+        }
+        </div>
+        <button class="btn btn-main mx-auto w-25 text-white" type="submit" [disabled]="registerForm.invalid">Register
+            @if(isLoading){
+                <span><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+            }
+        </button>
+      </form>
+</section>

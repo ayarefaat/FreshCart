@@ -1,0 +1,10 @@
+span.forget{
+    transition: color ease 0.4s;
+    -webkit-transition: color ease 0.4s;
+    -moz-transition: color ease 0.4s;
+    -ms-transition: color ease 0.4s;
+    -o-transition: color ease 0.4s;
+    &:hover{
+        color: #dc354a;
+    }
+}

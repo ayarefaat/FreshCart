@@ -1,0 +1,21 @@
+.item{
+    .inner{
+        .fit{
+            height: 270px;
+            object-position: center;
+            object-fit: cover;
+        }
+        h4{
+            color: #198754
+        }
+        &:hover{
+            box-shadow: 0 0 10px #11bd1168;
+        }
+        cursor: pointer;
+        transition: box-shadow ease 0.4s;
+        -webkit-transition: box-shadow ease 0.4s;
+        -moz-transition: box-shadow ease 0.4s;
+        -ms-transition: box-shadow ease 0.4s;
+        -o-transition: box-shadow ease 0.4s;
+}
+}

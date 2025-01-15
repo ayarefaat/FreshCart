@@ -1,0 +1,83 @@
+<section class="my-3">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-12 col-md-9">
+                <owl-carousel-o [options]="mainSlider">
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-image-1.jpeg" class="w-100 d-inline-block text-center" height="400" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-image-2.jpeg" class="w-100" height="400" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-image-3.jpeg" class="w-100" height="400" alt="">
+                    </ng-template>  
+                  </owl-carousel-o>
+            </div>
+            <div class="col-12 col-md-3">
+                <img src="./assets/images/grocery-banner.png" class="w-100" height="200" alt="">
+                <img src="./assets/images/grocery-banner-2.jpeg" class="w-100" height="200" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="">
+   <div class="container">
+    <h3>Shop popular Categories</h3>
+    <owl-carousel-o [options]=" categoriesSlider">
+      @for(category of categoryData;track category._id){
+          <ng-template  carouselSlide>
+              <img [src]="category.image" class="w-100" height="200" [alt]="category.name">
+              <p class="fw-bold">{{category.name}}</p>
+          </ng-template>
+      }
+    </owl-carousel-o>
+   </div>
+</section>
+<section class="products my-3">
+    <div class="container">
+        <h1 class="w-50 mx-auto text-center border-top border-bottom border-success p-2 fw-bold">
+            Popular Products
+        </h1>
+        <input type="text" class="form-control my-3 w-50 mx-auto border-success" placeholder="Search by Name" [(ngModel)]="search">
+        @if(!productData){
+            <app-loader></app-loader>
+        }
+        @defer(when productData){
+            <div class="row">
+                @for(product of productData | search: search ;track $index){
+                 <div class="col-12 col-sm-6 col-md-3 col-xl-2 p-2">
+                     <div class="product rounded-2 p-2 cursor-pointer" >
+                       <div [routerLink]="['/product-details/',product._id]">
+                         <div class="product-img">
+                             <img [src]="product.imageCover" class="w-100 rounded-2" [alt]="product.title">
+                         </div>
+                       </div>
+                         <div class="product-caption">
+                             <h2 class="fs-6 text-main">{{product.category.name}}</h2>
+                             <h1 class="fs-6 fw-bold">{{product.title.split(' ').splice(0,2).join(' ')}}</h1>
+                             <div >
+                                <div class="d-flex justify-content-between">
+                                    <span>{{product.price}}EGP</span>
+                                    <span class="heart fs-4" (click)="addToWishList(product._id,$index)"  [ngClass]="{'text-danger':product.isAdded}" ><i class="fa-solid fa-heart"></i></span>
+                                </div>
+                                 <div class="small">
+                                     @for(star of [1,2,3,4,5].slice(0,product.ratingsAverage) ;track $index){
+                                         <span class="rating-color"><i class="fa-solid fa-star"></i></span>
+                                     }
+                                     @if(product.ratingsAverage%1 !==0){
+                                         <span class="rating-color"><i class="fa-solid fa-star-half-stroke"></i></span>
+                                        }
+                                        <span>{{product.ratingsAverage}}</span>
+                                    </div>
+                                </div>
+                        </div>
+                         <button class="btn-main w-100" (click)="addToCart(product._id)">Add to cart +</button>
+                     </div>
+                 </div>
+                }
+             </div>
+        }
+    </div>
+
+</section>
