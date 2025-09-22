@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from 'diagnostics_channel';
 import { SharedService } from '../../core/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,11 @@ import { SharedService } from '../../core/services/shared.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  constructor(private _authService:AuthService,private _router:Router,private _formBuilder:FormBuilder,private _sharedService:SharedService){}
+  constructor(private _authService:AuthService,
+              private _router:Router,
+              private _formBuilder:FormBuilder,
+              private _sharedService:SharedService,
+              private _toaster:ToastrService){}
 
   isLoading:Boolean=false;
   resText!:string;
@@ -45,7 +50,7 @@ export class RegisterComponent {
       this.registerSub= this._authService.registerUSer(this.registerForm.value).subscribe({
         next:(res)=>{
           console.log(res);
-          this.resText=res.message;
+          this._toaster.success("Registered successfully", "FreshCart",{closeButton:true,timeOut:1000})
           this.isLoading=false;
           this.intervalId=setInterval(()=>{
             this._router.navigate(['/login'])

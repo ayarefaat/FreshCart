@@ -1,10 +1,10 @@
 <section class="bg-main-light p-3 my-5 rounded-2 mx-auto w-75 shadow">
     <h1 class="text-main fs-1 fw-bold">Register Now</h1>
-    @if(resText&&resText!=='success'){
+    <!-- @if(resText&&resText!=='success'){
         <p class="mb-0 mt-3 alert alert-danger fw-bold mx-auto">{{resText}}</p>
     }@else if(resText&&resText==='success'){
         <p class="mb-0 mt-3 alert alert-success text-success fw-bold mx-auto">{{resText}}</p>
-    }
+    } -->
     <form [formGroup]="registerForm" class="py-3" (ngSubmit)="registerUser()">
         <div class="my-3">
             <label class="mb-2 fw-bolder" for="name"><span class="text-danger">*</span>Name: </label>

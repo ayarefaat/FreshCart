@@ -5,20 +5,24 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../../core/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule,NgClass],
+  imports: [ReactiveFormsModule,NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   isLoading:Boolean=false;
-  resText!:string;
   intervalId:any;
   loginSub!:Subscription;
-  constructor(private _formBuilder:FormBuilder,private _authService:AuthService,private _router:Router,private _sharedService:SharedService){}
+  constructor(private _formBuilder:FormBuilder,
+              private _authService:AuthService,
+              private _router:Router,
+              private _sharedService:SharedService,
+              private _toaster:ToastrService){}
   loginForm: FormGroup = this._formBuilder.group({
     email:[null,[Validators.required,Validators.email]],
     password:[null,[Validators.required,Validators.pattern(/^\w{6,}$/)]]
@@ -30,7 +34,7 @@ export class LoginComponent {
        this.loginSub= this._authService.loginUser(this.loginForm.value).subscribe({
           next:(res)=>{
             console.log(res);
-            this.resText=res.message;
+            this._toaster.success("Logged in successfully", "FreshCart",{closeButton:true,timeOut:1000})
             this.isLoading=false;
             this._sharedService.login(res.token);
             this._sharedService.saveDecodedUser();
