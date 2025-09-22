@@ -3,11 +3,12 @@ import { BrandsService } from '../../core/services/brands.service';
 import { Subscription } from 'rxjs';
 import { IBrands } from '../../core/interfaces/ibrands';
 import { RouterLink } from '@angular/router';
+import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
   selector: 'app-brands',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LoaderComponent],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css'
 })

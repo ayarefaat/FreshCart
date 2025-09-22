@@ -7,7 +7,7 @@
     }
     <form [formGroup]="loginForm" class="py-3" (ngSubmit)="loginUser()">
         <div class="my-3">
-            <label class="mb-2" for="email"><span class="text-danger">*</span>Email: </label>
+            <label class="mb-2 fw-bolder" for="email"><span class="text-danger">*</span>Email: </label>
             <input  [ngClass]="{
                 'is-valid':!loginForm.get('email')?.errors &&( loginForm.get('email')?.touched ||  loginForm.get('email')?.dirty),
                 'is-invalid':loginForm.get('email')?.errors&& ( loginForm.get('email')?.touched ||  loginForm.get('email')?.dirty)
@@ -21,7 +21,7 @@
             }
         </div>
         <div class="my-3">
-            <label class="mb-2" for="password"><span class="text-danger">*</span>Password: </label>
+            <label class="mb-2 fw-bolder" for="password"><span class="text-danger">*</span>Password: </label>
             <input  [ngClass]="{
                 'is-valid':!loginForm.get('password')?.errors &&( loginForm.get('password')?.touched ||  loginForm.get('password')?.dirty),
                 'is-invalid':loginForm.get('password')?.errors&& ( loginForm.get('password')?.touched ||  loginForm.get('password')?.dirty)
@@ -34,18 +34,14 @@
 
             }
         </div>
-        <div class="d-flex justify-content-between">
-            <button class="btn btn-main  w-25 text-white" type="submit" [disabled]="loginForm.invalid">Login
+        <div class="d-flex  flex-column ">
+            <button class="btn btn-main col-12 col-md-4 text-white mb-3" type="submit" [disabled]="loginForm.invalid">Login
                 @if(isLoading){
                     <span><i class="fa-solid fa-circle-notch fa-spin"></i></span>
                 }
             </button>
             <span class=" forget fw-bolder cursor-pointer" (click)="forget()">Forget Password?</span>
            </div>
-        <!-- <button class="btn btn-main mx-auto w-25 text-white" type="submit" [disabled]="loginForm.invalid">Login
-            @if(isLoading){
-                <span><i class="fa-solid fa-circle-notch fa-spin"></i></span>
-            }
-        </button> -->
+      
       </form>
 </section>

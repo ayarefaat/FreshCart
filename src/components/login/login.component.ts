@@ -2,14 +2,14 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../../core/services/shared.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,NgClass],
+  imports: [RouterLink,ReactiveFormsModule,NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,10 +23,6 @@ export class LoginComponent {
     email:[null,[Validators.required,Validators.email]],
     password:[null,[Validators.required,Validators.pattern(/^\w{6,}$/)]]
   })
-  // loginForm:FormGroup=new FormGroup({
-  //   email : new FormControl(null,[Validators.required,Validators.email]),
-  //   password : new FormControl(null,[Validators.required,Validators.pattern(/^\w{6,}$/)])
-  // });
   loginUser(){
     if(this.loginForm.valid)
       {console.log(this.loginForm);
@@ -37,18 +33,13 @@ export class LoginComponent {
             this.resText=res.message;
             this.isLoading=false;
             this._sharedService.login(res.token);
-            this._sharedService.saveDecodedUser()
+            this._sharedService.saveDecodedUser();
+            this._sharedService.saveUserData(res.user)
             // sessionStorage.setItem('token',res.token)
              this.intervalId=setInterval(()=>{
               this._router.navigate(['/home'])
             },2000)
-          },
-          error:(err)=>{
-            console.log(err);
-            this.resText=err.error.message
-            this.isLoading=false
-          },
-          complete:()=>{}
+          }
         })
       }else{
         this.loginForm.markAllAsTouched()

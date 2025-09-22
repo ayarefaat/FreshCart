@@ -4,9 +4,12 @@
             <h2 class="text-center fw-bolder text-main">{{categoryName}}</h2>
             @if(!subCategoriesData){
                 <app-loader></app-loader>
+            } @else if(subCategoriesData.length==0){
+                <h1 class="fw-bolder mt-5 text-center">No Sub-categories</h1>
             }
+            
             @for(subCat of subCategoriesData; track subCat.category){
-                <div class="item col-12 col-md-4 p-3 cursor-pointer" [routerLink]="['/main/specific-subCategory',subCat._id]">
+                <div class="item col-12 col-md-4 p-3 cursor-pointer">
                     <div class="inner p-3 border rounded-2 shadow">
                         <h5 class="fw-bolder mb-0">{{subCat.name}}</h5>
                     </div>

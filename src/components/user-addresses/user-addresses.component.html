@@ -1,0 +1,30 @@
+<section class="my-5">
+    <div class="container">
+        
+       <div class=" bg-main-light shadow rounded-2 p-5 ">
+            <div class="d-flex flex-wrap justify-content-between">
+                <h1 class="col-12 col-md-6 text-main fw-bolder">My Addresses</h1>
+            </div>
+        @if(!userAddresses){
+            <app-loader></app-loader>
+        }@else if(userAddresses.length==0){
+            <h2 class="text-center mt-3 fw-bold">No Addresses</h2>
+        }
+        <div class="row mt-4">
+           @for(address of userAddresses;track address._id){
+             @if(address.city){
+                <div class="item col-12 border-bottom border-2 p-3">
+                    <p class="lead fw-bolder">Name: <span class="text-main">{{address.name}}</span></p>
+                    <p class="lead fw-bolder">City: <span class="text-main">{{address.city}}</span></p>
+                    <p class="lead fw-bolder">Details: <span class="text-main">{{address.details}}</span></p>
+                    <p class="lead fw-bolder">Phone: <span class="text-main">{{address.phone}}</span></p>
+                    <span class="fw-bolder text-danger cursor-pointer" (click)="removeAddress(address._id)"><i class="fa fa-trash" aria-hidden="true" ></i> Remove Address</span>
+                </div>
+             }
+           }
+           <button class="btn btn-outline-success col-sm-4 d-block mx-auto mt-3" routerLink="/add-address">Add Address</button>
+         </div>
+         
+       </div>
+    </div>
+</section>

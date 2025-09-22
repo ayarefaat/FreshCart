@@ -1,0 +1,12 @@
+h4{
+    &:hover{
+        color: var(--main-color);
+    }
+}
+button{
+    transition: background-color ease 1s;
+    -webkit-transition: background-color ease 1s;
+    -moz-transition: background-color ease 1s;
+    -ms-transition: background-color ease 1s;
+    -o-transition: background-color ease 1s;
+}

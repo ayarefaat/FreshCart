@@ -1,0 +1,72 @@
+<section class=" m-5 bg-light rounded-2 p-3">
+    <div class="container">
+       <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <h2 class="text-main fw-bolder my-2 col-12 col-md-6">Add Address</h2>
+        <!-- <h4 class="fw-bolder mb-0 address cursor-pointer col-12 col-md-6" routerLink="/addresses">Your Addresses</h4> -->
+       </div>
+
+        <form [formGroup]="addressForm" (ngSubmit)="addAddress()">
+            <div class="my-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="" formControlName="name" id="name" placeholder="ex:Home , Work ,..."
+                [ngClass]="{
+                    'is-valid':!addressForm.get('name')?.errors &&( addressForm.get('name')?.touched ||  addressForm.get('name')?.dirty),
+                    'is-invalid':addressForm.get('name')?.errors&& ( addressForm.get('name')?.touched ||  addressForm.get('name')?.dirty)
+                }">
+                @if(addressForm.get('name')?.errors&& addressForm.get('name')?.touched){
+                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                        @if(addressForm.get('name')?.getError('required')){<p class="m-0">name is required</p>}
+                    </div>
+                }
+            </div>
+            <div class="my-3">
+                <label for="details">Details</label>
+                <textarea class="form-control" name="" formControlName="details" id="details" placeholder="Cairo , Maadi , ...."
+                [ngClass]="{
+                    'is-valid':!addressForm.get('details')?.errors &&( addressForm.get('details')?.touched ||  addressForm.get('details')?.dirty),
+                    'is-invalid':addressForm.get('details')?.errors&& ( addressForm.get('details')?.touched ||  addressForm.get('details')?.dirty)
+                }"></textarea>
+                @if(addressForm.get('details')?.errors&& addressForm.get('details')?.touched){
+                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                        @if(addressForm.get('details')?.getError('required')){<p class="m-0">details is required</p>}
+                        @else if(addressForm.get('details')?.getError('minlength')){<p class="m-0">Details length must be at least 20 </p>}
+
+                    </div>
+                }
+            </div>
+            <div class="my-3">
+                <label for="phone">Phone</label>
+                <input [ngClass]="{
+                    'is-valid':!addressForm.get('phone')?.errors &&( addressForm.get('phone')?.touched ||  addressForm.get('phone')?.dirty),
+                    'is-invalid':addressForm.get('phone')?.errors&& ( addressForm.get('phone')?.touched ||  addressForm.get('phone')?.dirty)
+                }" id="phone" type="tel" class="form-control" formControlName="phone" placeholder="01xxxxxxxxx">
+                @if(addressForm.get('phone')?.errors&& addressForm.get('phone')?.touched){
+    
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" >
+                    @if(addressForm.get('phone')?.getError('required')){<p class="m-0">phone is required</p>}
+                    @else if(addressForm.get('phone')?.getError('pattern')){<p class="m-0">phone number is not valid</p>}
+                </div>
+            }
+            </div>
+            <div class="my-3">
+                <label for="city">City</label>
+                <input class="form-control" type="text" name="" formControlName="city" id="city" placeholder="Helwan"
+                [ngClass]="{
+                    'is-valid':!addressForm.get('city')?.errors &&( addressForm.get('city')?.touched ||  addressForm.get('city')?.dirty),
+                    'is-invalid':addressForm.get('city')?.errors&& ( addressForm.get('city')?.touched ||  addressForm.get('city')?.dirty)
+                }">
+                @if(addressForm.get('city')?.errors&& addressForm.get('city')?.touched){
+                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                        @if(addressForm.get('city')?.getError('required')){<p class="m-0">city is required</p>}
+                        @else if(addressForm.get('city')?.getError('minlength')){<p class="m-0">Details length must be at least 3 </p>}
+
+                    </div>
+                }
+            </div>
+            <div class="btns  d-flex">
+                <button class="btn btn-outline-success fw-bolder px-4 d-block m-auto" [disabled]="addressForm.invalid" >Add</button>
+            </div>
+        </form>
+        <button class="btn btn-outline-danger" routerLink="/addresses">Your Saved Addresses</button>
+    </div>
+</section>

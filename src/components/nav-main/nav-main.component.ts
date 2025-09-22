@@ -25,8 +25,6 @@ export class NavMainComponent implements OnInit {
     this._cartService.getLoggedUserCart().subscribe({
       next:(res)=>{
         this.numOfCartItems=res.numOfCartItems
-      },error:(err)=>{
-        console.log(err)
       }
     })
    this.cartSub= this._cartService.cartCounter.subscribe({
@@ -39,8 +37,6 @@ export class NavMainComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.numOfWishListItems=res.data.length
-      },error:(err)=>{
-        console.log(err)
       }
     });
     this.wishSub= this._wishListService.wishListCounter.subscribe({
@@ -51,7 +47,6 @@ export class NavMainComponent implements OnInit {
   }
   logout(){
     this._sharedService.logout()
-    // sessionStorage.removeItem('token');
     this._router.navigate(['/login']);
   };
   ngOnDestroy(){

@@ -10,18 +10,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class WishlistService {
   wishListCounter:BehaviorSubject<number>= new BehaviorSubject(0)
   
-  clientToken:any={token:this._sharedService.getToken()}
+  // clientToken:any={token:this._sharedService.getToken()}
   constructor(private _httpClient: HttpClient, private _sharedService: SharedService) { }
   
   addToWishList(body: any): Observable<any> {
 
-    return this._httpClient.post(`${enviroment.baseUrl}/api/v1/wishlist`, {productId:body},{headers:this.clientToken});
+    return this._httpClient.post(`${enviroment.baseUrl}/api/v1/wishlist`, {productId:body});
   }
   displayWishList(): Observable<any> {
 
-    return this._httpClient.get(`${enviroment.baseUrl}/api/v1/wishlist`,{headers:this.clientToken});
+    return this._httpClient.get(`${enviroment.baseUrl}/api/v1/wishlist`);
   }
   removeWishList(id:any):Observable<any>{
-    return this._httpClient.delete(`${enviroment.baseUrl}/api/v1/wishlist/${id}`,{headers:this.clientToken});
+    return this._httpClient.delete(`${enviroment.baseUrl}/api/v1/wishlist/${id}`);
   }
 }

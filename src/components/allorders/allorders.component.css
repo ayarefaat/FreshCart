@@ -1,3 +1,6 @@
 img{
-    width: 40px;
+    width: 30px;
+}
+.inner{
+    min-height: 143px;
 }

@@ -4,12 +4,14 @@
         <h1>My WishList</h1>
         @if(!wishListData){
             <app-loader></app-loader>
+        }@else if (wishListData.length==0){
+            <button class="btn btn-outline-success mt-4" routerLink="/products">Start Exploring</button>
         }
         <div class="row">
            @for(wishList of wishListData;track wishList._id){
             <div class="item col-12 border-bottom border-2 p-3">
-                <div class="d-flex justify-content-between">
-                    <div class="image d-flex col-md-10">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="image d-flex col-12 col-lg-10">
                         <img [src]="wishList.imageCover" class="w-25 me-3" [alt]="wishList.title">
                         <div class="data d-flex flex-column justify-content-center ">
                             <h6 class="fw-bolder">{{wishList.title}}</h6>
@@ -17,12 +19,13 @@
                             <span class="text-danger fw-bolder" (click)="delete(wishList._id,$index)"><i class="fa-solid fa-trash"></i> Remove</span>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class=" col-12 col-lg-2 d-flex align-items-center mt-3 mt-lg-0">
                         <button class="btn btn-outline-success fw-bolder" (click)="addToCart(wishList._id,$index)">Add to Cart</button>
                     </div>
                 </div>
             </div>
            }
+           
         </div>
        </div>
     </div>

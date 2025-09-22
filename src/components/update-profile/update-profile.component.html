@@ -1,0 +1,52 @@
+<section class="bg-main-light p-3 my-5 rounded-2 mx-auto w-75 shadow">
+   
+    <form [formGroup]="updateForm" class="py-3" (ngSubmit)="update()" >
+        <div class="my-3">
+            <label class="mb-2 fw-bolder" for="name"><span class="text-danger">*</span>Name: </label>
+            <input [ngClass]="{
+                'is-valid':!updateForm.get('name')?.errors &&( updateForm.get('name')?.touched ||  updateForm.get('name')?.dirty),
+                'is-invalid':updateForm.get('name')?.errors&& ( updateForm.get('name')?.touched ||  updateForm.get('name')?.dirty)
+            }" id="name" type="text" class="form-control" formControlName="name" placeholder="Ex:Aya">
+            @if(updateForm.get('name')?.errors&& updateForm.get('name')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(updateForm.get('name')?.getError('required')){<p class="m-0">Name is required</p>}
+                    @else if(updateForm.get('name')?.getError('minlength')){<p class="m-0">Name length must be at least 3</p>}
+                    @else if(updateForm.get('name')?.getError('maxlength')){<p class="m-0">Name length must be max 10</p>}
+                </div>
+
+            }
+        </div>
+        <div class="my-3">
+            <label class="mb-2 fw-bolder" for="email"><span class="text-danger">*</span>Email: </label>
+            <input [ngClass]="{
+                'is-valid':!updateForm.get('email')?.errors &&( updateForm.get('email')?.touched ||  updateForm.get('email')?.dirty),
+                'is-invalid':updateForm.get('email')?.errors&& ( updateForm.get('email')?.touched ||  updateForm.get('email')?.dirty)
+            }" id="email" type="text" class="form-control" formControlName="email" placeholder="Ex:email@gmail.com">
+            @if(updateForm.get('email')?.errors&& updateForm.get('email')?.touched){
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
+                    @if(updateForm.get('email')?.getError('required')){<p class="m-0">Email is required</p>}
+                    @else if(updateForm.get('email')?.getError('email')){<p class="m-0">Email format not correct</p>}
+                </div>
+
+            }
+        </div>
+       
+       
+        <div class="my-3">
+            <label class="mb-2 fw-bolder" for="phone"><span class="text-danger">*</span>Phone: </label>
+            <input [ngClass]="{
+                'is-valid':!updateForm.get('phone')?.errors &&( updateForm.get('phone')?.touched ||  updateForm.get('phone')?.dirty),
+                'is-invalid':updateForm.get('phone')?.errors&& ( updateForm.get('phone')?.touched ||  updateForm.get('phone')?.dirty)
+            }" id="phone" type="tel" class="form-control" formControlName="phone">
+            @if(updateForm.get('phone')?.errors&& updateForm.get('phone')?.touched){
+
+            <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                @if(updateForm.get('phone')?.getError('required')){<p class="m-0">phone is required</p>}
+                @else if(updateForm.get('phone')?.getError('pattern')){<p class="m-0">phone number is not valid</p>}
+            </div>
+        }
+        </div>
+        <button class="btn btn-main d-block mx-auto text-white col-6 " type="submit" [disabled]="updateForm.invalid" >UpDate</button>
+        <p class="text-danger mt-3">* You must update email with any other data.</p>
+      </form>
+</section>

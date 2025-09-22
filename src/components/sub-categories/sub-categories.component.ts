@@ -29,8 +29,6 @@ export class SubCategoriesComponent {
       next:(res)=>{
         this.subCategoriesData=res.data
         console.log(this.subCategoriesData);
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }

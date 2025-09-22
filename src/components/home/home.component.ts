@@ -143,10 +143,6 @@ export class HomeComponent {
         });
           
       }
-      ,
-      error:(err)=>{
-        console.log(err)
-      }
     })
   }
 
@@ -157,12 +153,6 @@ export class HomeComponent {
         this._cartService.cartCounter.next(res.numOfCartItems)
         // console.log(res.numOfCartItems)
         this._toaster.success(res.message,'Fresh Cart',{closeButton:true})
-      },error:(err)=>{
-        console.log(err);
-        this._toaster.warning(err.message,'Fresh Cart',{closeButton:true})
-
-      },complete:()=>{
-        
       }
     })
   }

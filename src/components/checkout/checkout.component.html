@@ -1,16 +1,16 @@
 <section class="checkout m-5 bg-light rounded-2 p-3">
     <div class="container">
         <h2 class="text-main fw-bolder my-2">CheckOut</h2>
-        <form [formGroup]="shippingAddress" (ngSubmit)="payCart()">
+        <form [formGroup]="shippingAddress">
             <div class="my-3">
                 <label for="details">Details</label>
-                <textarea class="form-control" name="" formControlName="details" id="details"
+                <textarea class="form-control" name="" formControlName="details" id="details" placeholder="Cairo , Maadi"
                 [ngClass]="{
                     'is-valid':!shippingAddress.get('details')?.errors &&( shippingAddress.get('details')?.touched ||  shippingAddress.get('details')?.dirty),
                     'is-invalid':shippingAddress.get('details')?.errors&& ( shippingAddress.get('details')?.touched ||  shippingAddress.get('details')?.dirty)
                 }"></textarea>
                 @if(shippingAddress.get('details')?.errors&& shippingAddress.get('details')?.touched){
-                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" >
                         @if(shippingAddress.get('details')?.getError('required')){<p class="m-0">details is required</p>}
                         @else if(shippingAddress.get('details')?.getError('minlength')){<p class="m-0">Details length must be at least 20 </p>}
 
@@ -19,14 +19,13 @@
             </div>
             <div class="my-3">
                 <label for="phone">Phone</label>
-                <!-- <input class="form-control" type="tel" name="" formControlName="phone" id="phone"> -->
                 <input [ngClass]="{
                     'is-valid':!shippingAddress.get('phone')?.errors &&( shippingAddress.get('phone')?.touched ||  shippingAddress.get('phone')?.dirty),
                     'is-invalid':shippingAddress.get('phone')?.errors&& ( shippingAddress.get('phone')?.touched ||  shippingAddress.get('phone')?.dirty)
-                }" id="phone" type="tel" class="form-control" formControlName="phone">
+                }" id="phone" type="tel" class="form-control" formControlName="phone" placeholder="01xxxxxxxxx">
                 @if(shippingAddress.get('phone')?.errors&& shippingAddress.get('phone')?.touched){
     
-                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold">
                     @if(shippingAddress.get('phone')?.getError('required')){<p class="m-0">phone is required</p>}
                     @else if(shippingAddress.get('phone')?.getError('pattern')){<p class="m-0">phone number is not valid</p>}
                 </div>
@@ -34,20 +33,23 @@
             </div>
             <div class="my-3">
                 <label for="city">City</label>
-                <input class="form-control" type="text" name="" formControlName="city" id="city"
+                <input class="form-control" type="text" name="" formControlName="city" id="city" placeholder="Helwan"
                 [ngClass]="{
                     'is-valid':!shippingAddress.get('city')?.errors &&( shippingAddress.get('city')?.touched ||  shippingAddress.get('city')?.dirty),
                     'is-invalid':shippingAddress.get('city')?.errors&& ( shippingAddress.get('city')?.touched ||  shippingAddress.get('city')?.dirty)
                 }">
                 @if(shippingAddress.get('city')?.errors&& shippingAddress.get('city')?.touched){
-                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" placeholder="01xxxxxxxxx">
+                    <div class="alert alert-warning fs-6 my-3 rounded-2 fw-bold" >
                         @if(shippingAddress.get('city')?.getError('required')){<p class="m-0">city is required</p>}
                         @else if(shippingAddress.get('city')?.getError('minlength')){<p class="m-0">Details length must be at least 3 </p>}
 
                     </div>
                 }
             </div>
-            <button class="btn btn-outline-success fw-bolder px-4 d-block m-auto" [disabled]="shippingAddress.invalid">Pay</button>
+            <div class="btns d-flex flex-wrap justify-content-center align-items-center">
+                <button class="btn btn-outline-success fw-bolder px-4 col-12 col-md-4 me-1" [disabled]="shippingAddress.invalid" (click)="payVisa()">Pay Visa</button>
+                <button class="btn btn-outline-success fw-bolder px-4 col-12 col-md-4 mt-2 mt-md-0 ms-1" [disabled]="shippingAddress.invalid" (click)="payCash()">Pay Cash</button>
+            </div>
         </form>
     </div>
 </section>

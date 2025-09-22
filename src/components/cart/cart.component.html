@@ -1,23 +1,27 @@
 <section class="my-5">
     <div class="container">
         
-       <div class="cart bg-main-light shadow rounded-2 p-5">
-        <div class="d-flex justify-content-between">
-            <h1>My Cart</h1>
-            <h5 routerLink="/allorders" class="text-main fw-bolder cursor-pointer">Go to Past orders</h5>
+       <div class="cart bg-main-light shadow rounded-2 p-5 ">
+        <div class="d-flex justify-content-between flex-wrap align-items-center">
+            <h1 class="col-12 col-md-6">My Cart</h1>
+            <h5 class="col-12 col-md-6 text-main fw-bolder cursor-pointer  mt-md-2" routerLink="/allorders" >Go to orders</h5>
         </div>
-        <div class="items d-flex justify-content-between mt-4">
-            <h4 class=" fw-bolder">Total Price: <span class="text-success">{{totalCartPrice | currency :'GBP'}}</span></h4>
-            <h4 class=" fw-bolder">Total no. of items : <span class="text-success">{{noOfCartItems}}</span></h4>
+        <div class="items d-flex justify-content-between flex-wrap mt-4">
+            <h4 class=" fw-bolder sm-h6 col-12 col-md-6">Total Price: <span class="text-success">{{totalCartPrice | currency :'GBP'}}</span></h4>
+            <h4 class=" fw-bolder col-12 col-md-6">Total no. of items : <span class="text-success">{{noOfCartItems}}</span></h4>
         </div>
         @if(!cartData){
             <app-loader></app-loader>
+        }@else if(cartData.length==0){
+            <div class="mt-5">
+                <button class="btn btn-outline-success" routerLink="/products">Start Shopping</button>
+            </div>
         }
         <div class="row mt-4">
            @for(item of cartData;track item.product._id){
             <div class="item col-12 border-bottom border-2 p-3">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="image d-flex col-md-10">
+                <div class="d-flex justify-content-between flex-wrap align-items-center">
+                    <div class="image d-flex col-12 col-md-10">
                         <img [src]="item.product.imageCover" class="w-25 me-3" [alt]="item.product.title">
                         <div class="data d-flex flex-column justify-content-center ">
                             <h6 class="fw-bolder">{{item.product.title}}</h6>
@@ -26,10 +30,8 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="d-flex justify-content-center ">
-                            <!-- @if(item.count>1){ -->
+                        <div class="d-flex justify-content-center mt-3 mt-md-0 ">
                                 <button class="btn btn-outline-success fw-bolder me-3" [disabled]="item.count==1"  (click)="updateQuantity(item.product._id,item.count-1)">-</button>
-                            <!-- } -->
                             <span class="pt-1">{{item.count}}</span>
                             <button class="btn btn-outline-success fw-bolder ms-3" (click)="updateQuantity(item.product._id,item.count+1)">+</button>
                         </div>
@@ -39,9 +41,9 @@
            }
           @defer(when cartData){
             @if(cartData.length>0){
-                <div class="d-flex justify-content-between mt-4">
-                    <button class="btn btn-outline-success w-25" (click)="clearCart()">Clear cart</button>
-                    <button class="btn btn-outline-success w-25" [routerLink]="['/checkout',cartID]">Check Out</button>
+                <div class="d-flex justify-content-between flex-wrap mt-4">
+                    <button class="btn btn-outline-success col-12 col-md-4" (click)="clearCart()">Clear cart</button>
+                    <button class="btn btn-outline-success col-12 col-md-4 mt-2 mt-md-0" [routerLink]="['/checkout',cartID]">Check Out</button>
                 </div>
               }
           }

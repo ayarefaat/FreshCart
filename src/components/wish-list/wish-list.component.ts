@@ -5,11 +5,12 @@ import { IProduct } from '../../core/interfaces/iproduct';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { LoaderComponent } from "../loader/loader.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-wish-list',
   standalone: true,
-  imports: [LoaderComponent],
+  imports: [LoaderComponent,RouterLink],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css'
 })
@@ -22,8 +23,6 @@ export class WishListComponent {
       next:(res)=>{
         this.wishListData=res.data
         console.log(this.wishListData)
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }
@@ -31,13 +30,10 @@ export class WishListComponent {
     this._wishlistService.removeWishList(id).subscribe({
       next:(res)=>{
         console.log(res);
-        this._toaster.warning(res.message,'FreshCart',{closeButton:true});
+        this._toaster.warning(res.message,'FreshCart',{closeButton:true,timeOut:1000});
         this.wishListData.splice(index,1);
 
         this._wishlistService.wishListCounter.next(res.data.length)
-      },
-      error:(err)=>{
-        console.log(err)
       }
     })
   };
@@ -47,10 +43,7 @@ export class WishListComponent {
         console.log(res);
         this.delete(id,index);
         this._cartService.cartCounter.next(res.numOfCartItems)
-        this._toaster.success(res.message,'FreshCart',{closeButton:true})
-      },error:(err)=>{
-        console.log(err);
-
+        this._toaster.success(res.message,'FreshCart',{closeButton:true,timeOut:1000})
       }
     })
   }

@@ -5,19 +5,21 @@ import { ProductsService } from '../../core/services/products.service';
 import { IProduct } from '../../core/interfaces/iproduct';
 import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
+import { LoaderComponent } from '../loader/loader.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CarouselModule,UpperCasePipe,CurrencyPipe],
+  imports: [CarouselModule,UpperCasePipe,CurrencyPipe,LoaderComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
   constructor(private _activatedRoute:ActivatedRoute,
-    private _productService:ProductsService,private _cartService:CartService){}
+    private _productService:ProductsService,private _cartService:CartService,private _toaster:ToastrService){}
     productId!:any;
-    productDetails:IProduct| null=null;
+    productDetails!:IProduct;
     productSlider: OwlOptions = {
       loop: true,
       mouseDrag: true,
@@ -60,8 +62,6 @@ export class ProductDetailsComponent {
       next:(res)=>{
         console.log(res.data);
         this.productDetails=res.data
-      },error:(err)=>{
-        console.log(err)
       }
   })
    
@@ -70,13 +70,9 @@ export class ProductDetailsComponent {
     this._cartService.addToCart(id).subscribe({
       next:(res)=>{
         console.log(res);
-        this._cartService.cartCounter.next(res.numOfCartItems)
-      },error:(err)=>{
-        console.log(err)
-      },complete:()=>{
-        
+        this._cartService.cartCounter.next(res.numOfCartItems);
+        this._toaster.success(res.message,'FreshCart',{closeButton:true,timeOut:1000})
       }
     })
-    console.log('add to cart clicked');
   }
 }

@@ -15,6 +15,10 @@ export class AuthService {
   loginUser(userData:object):Observable<any>{
     return this._HttpClient.post(`${enviroment.baseUrl}/api/v1/auth/signin`,userData)
   };
+  updateUser(userData:object):Observable<any>{
+    return this._HttpClient.put(`${enviroment.baseUrl}/api/v1/users/updateMe`,userData)
+  };
+
   forgetPassword(userData:object):Observable<any>{
     return this._HttpClient.post(`${enviroment.baseUrl}/api/v1/auth/forgotPasswords`,userData)
   };

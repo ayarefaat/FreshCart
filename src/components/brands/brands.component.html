@@ -2,6 +2,9 @@
     <div class="container">
         <h2 class="fw-bolder text-center my-3">All Brands</h2>
         <div class="row">
+            @if(!brandsData){
+                <app-loader></app-loader>
+            }
           @for(brand of brandsData;track brand._id){
             <div class="item col-lg-3 col-md-4 p-2 cursor-pointer" [routerLink]="['/specific-brand/',brand._id]">
                 <div class="inner border border-2">

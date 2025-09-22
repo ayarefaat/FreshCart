@@ -5,7 +5,7 @@
                 <app-loader></app-loader>
             }
            @for(category of categoryData;track category._id){
-            <div class="item col-12 col-lg-4 col-md-6  p-2" [routerLink]="['/sub-categories/',category._id,category.name]">
+            <div class="item col-12 col-lg-4 col-md-6  p-2" [routerLink]="['/sub-categories',category._id,category.name]">
                <div class="inner border border-2 rounded-2">
                 <div class="image">
                     <img [src]="category.image" alt="" class="fit w-100 rounded-2">

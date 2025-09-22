@@ -9,25 +9,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active cursor-pointer"  aria-current="page" routerLink="home" routerLinkActive="active-link">Home</a>
+            <a class="nav-link ps-2 active cursor-pointer fw-bolder"  aria-current="page" routerLink="home" routerLinkActive="active-link">Home</a>
          </li>
 
-          <!-- <li class="nav-item">
-            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="cart" routerLinkActive="active-link" >Cart</a>
-          </li> -->
-
-          <li class="nav-item">
-            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="products" routerLinkActive="active-link" >Products</a>
+          <li class="nav-item ">
+            <a class="nav-link ps-2 active cursor-pointer fw-bolder" aria-current="page" routerLink="products" routerLinkActive="active-link" >Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="categories" routerLinkActive="active-link">Categories</a>
+            <a class="nav-link ps-2 active cursor-pointer fw-bolder" aria-current="page" routerLink="categories" routerLinkActive="active-link">Categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active cursor-pointer" aria-current="page" routerLink="brands" routerLinkActive="active-link" >Brands</a>
+            <a class="nav-link ps-2 active cursor-pointer fw-bolder" aria-current="page" routerLink="brands" routerLinkActive="active-link" >Brands</a>
           </li>
     
         </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 p-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active cursor-pointer"  aria-current="page" ><i class="fa-brands fa-instagram"></i></a>
          </li>
@@ -61,7 +57,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link cursor-pointer" (click)="logout()">Signout</a>
+            <a class="nav-link cursor-pointer ps-1 fw-bolder" routerLink="profile"  routerLinkActive="active-link">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer fw-bolder ps-1" (click)="logout()">Signout</a>
           </li>
         </ul>
       </div>

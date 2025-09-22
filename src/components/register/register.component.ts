@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from 'diagnostics_channel';
+import { SharedService } from '../../core/services/shared.service';
 
 @Component({
   selector: 'app-register',
@@ -14,20 +15,13 @@ import { unsubscribe } from 'diagnostics_channel';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  constructor(private _authService:AuthService,private _router:Router,private _formBuilder:FormBuilder){}
+  constructor(private _authService:AuthService,private _router:Router,private _formBuilder:FormBuilder,private _sharedService:SharedService){}
 
   isLoading:Boolean=false;
   resText!:string;
   intervalId:any;
   registerSub!:Subscription
-  // registerForm:FormGroup=this._formBuilder.group({
-  //   name:[null,[[Validators.required,Validators.minLength(3),Validators.maxLength(10)]]],
-  //   email:[null,[Validators.required,Validators.email]],
-  //   password:[null,[Validators.required,Validators.pattern(/^\w{6,}$/)]],
-  //   rePassword:[null,[Validators.required,Validators.pattern(/^\w{6,}$/)]],
-  //   phone:[null,[Validators.required,Validators.pattern(/^01[0125][0-9]{8}$/)]],
-  // },this.confirmPasword)
-
+  
   registerForm:FormGroup=new FormGroup({
     name:new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
@@ -62,8 +56,7 @@ export class RegisterComponent {
           console.log(err);
           this.isLoading=false;
           this.resText=err.error.message;
-        },
-        complete:()=>{}
+        }
       })
     }else{
       this.registerForm.markAllAsTouched()

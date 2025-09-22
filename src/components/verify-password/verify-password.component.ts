@@ -22,8 +22,6 @@ export class VerifyPasswordComponent {
         if(res.status=='Success'){
           this._router.navigate(['/reset-password']);
         }
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }

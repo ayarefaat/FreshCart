@@ -52,8 +52,6 @@ export class ProductsComponent {
       next:(res)=>{
         this.productDataPage2=res.data;
         console.log(res)
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }
@@ -84,10 +82,6 @@ export class ProductsComponent {
         });
           
       }
-      ,
-      error:(err)=>{
-        console.log(err)
-      }
     })
   }
   addToCart(id:any){
@@ -96,10 +90,7 @@ export class ProductsComponent {
         console.log(res);
         this._toaster.success(res.message,'FreshCart',{closeButton:true,timeOut:1000});
         this._cartService.cartCounter.next(res.numOfCartItems)
-      },error:(err)=>{
-        console.log(err)
       }
     })
-    console.log('add to cart clicked');
   }
 }

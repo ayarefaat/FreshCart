@@ -48,10 +48,8 @@ export class CartComponent {
           this.noOfCartItems=res.numOfCartItems;
           this.totalCartPrice=res.data.totalCartPrice;
           console.log(this.totalCartPrice);
-          this._toastr.warning("Removed Successfully")
+          this._toastr.warning("Removed Successfully","FreshCart",{closeButton:true,timeOut:1000})
         }
-      },error:(err)=>{
-        console.log(err)
       }
     })
   };
@@ -60,9 +58,8 @@ export class CartComponent {
     this._cartService.clearCart().subscribe({
       next:(res)=>{
         console.log(res);
-        this._toastr.warning("Cleared Successfully")
-      },error:(err)=>{
-        console.log(err)
+        this._toastr.warning("Cleared Successfully","FreshCart",{closeButton:true,timeOut:1000});
+        this._cartService.cartCounter.next(0)
       },complete:()=>{
         
         this.cartData.splice(0,this.cartData.length);
@@ -77,11 +74,7 @@ export class CartComponent {
         console.log(res);
         this.totalCartPrice=res.data.totalCartPrice;
         this.cartData=res.data.products;
-        this._toastr.success("Updated Successfully")
-      },error(err){
-        console.log(err)
-      },complete:()=>{
-        
+        this._toastr.success("Updated Successfully", "FreshCart",{closeButton:true,timeOut:1000})
       }
     })
   }

@@ -21,7 +21,7 @@ export class OrderDetailsComponent {
     this.getOrderDetails()
   }
   getOrderDetails(){
-    console.log(JSON.parse(this.orderDetails))
+    // console.log(JSON.parse(this.orderDetails))
     return JSON.parse(this.orderDetails);
   }
 }

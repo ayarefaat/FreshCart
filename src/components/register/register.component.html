@@ -7,7 +7,7 @@
     }
     <form [formGroup]="registerForm" class="py-3" (ngSubmit)="registerUser()">
         <div class="my-3">
-            <label class="mb-2" for="name"><span class="text-danger">*</span>Name: </label>
+            <label class="mb-2 fw-bolder" for="name"><span class="text-danger">*</span>Name: </label>
             <input [ngClass]="{
                 'is-valid':!registerForm.get('name')?.errors &&( registerForm.get('name')?.touched ||  registerForm.get('name')?.dirty),
                 'is-invalid':registerForm.get('name')?.errors&& ( registerForm.get('name')?.touched ||  registerForm.get('name')?.dirty)
@@ -22,7 +22,7 @@
             }
         </div>
         <div class="my-3">
-            <label class="mb-2" for="email"><span class="text-danger">*</span>Email: </label>
+            <label class="mb-2 fw-bolder" for="email"><span class="text-danger">*</span>Email: </label>
             <input [ngClass]="{
                 'is-valid':!registerForm.get('email')?.errors &&( registerForm.get('email')?.touched ||  registerForm.get('email')?.dirty),
                 'is-invalid':registerForm.get('email')?.errors&& ( registerForm.get('email')?.touched ||  registerForm.get('email')?.dirty)
@@ -36,7 +36,7 @@
             }
         </div>
         <div class="my-3">
-            <label class="mb-2" for="password"><span class="text-danger">*</span>Password: </label>
+            <label class="mb-2 fw-bolder" for="password"><span class="text-danger">*</span>Password: </label>
             <input [ngClass]="{
                 'is-valid':!registerForm.get('password')?.errors &&( registerForm.get('password')?.touched ||  registerForm.get('password')?.dirty),
                 'is-invalid':registerForm.get('password')?.errors&& ( registerForm.get('password')?.touched ||  registerForm.get('password')?.dirty)
@@ -50,7 +50,7 @@
             }
         </div>
         <div class="my-3">
-            <label class="mb-2" for="rePassword"><span class="text-danger">*</span>rePassword: </label>
+            <label class="mb-2 fw-bolder" for="rePassword"><span class="text-danger">*</span>rePassword: </label>
             <input [ngClass]="{
                 'is-valid':!registerForm.get('rePassword')?.errors &&( registerForm.get('rePassword')?.touched ||  registerForm.get('rePassword')?.dirty),
                 'is-invalid':registerForm.get('rePassword')?.errors&& ( registerForm.get('rePassword')?.touched ||  registerForm.get('rePassword')?.dirty)
@@ -65,7 +65,7 @@
             }
         </div>
         <div class="my-3">
-            <label class="mb-2" for="phone"><span class="text-danger">*</span>Phone: </label>
+            <label class="mb-2 fw-bolder" for="phone"><span class="text-danger">*</span>Phone: </label>
             <input [ngClass]="{
                 'is-valid':!registerForm.get('phone')?.errors &&( registerForm.get('phone')?.touched ||  registerForm.get('phone')?.dirty),
                 'is-invalid':registerForm.get('phone')?.errors&& ( registerForm.get('phone')?.touched ||  registerForm.get('phone')?.dirty)

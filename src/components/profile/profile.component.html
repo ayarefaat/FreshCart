@@ -1,0 +1,21 @@
+<section class="my-5">
+    <div class="container ">
+        <div class="row d-flex justify-content-center align-items-center">'
+            <div class="card col-md-4 p-0 shadow" >
+                <img src="./assets/images/avatar.png" class="card-img-top " alt="...">
+                <div class="card-body">
+                  <h5 class="card-title mb-3 fw-bolder">Name : <span class="text-main">{{userData.name}}</span> </h5>
+                  <h5 class="card-title mb-3 fw-bolder">Email : <span class="text-main">{{userData.email}}</span> </h5>
+                  @if(userData.phone){
+                    <h5 class="card-title mb-3 fw-bolder">Phone : <span class="text-main">{{userData.phone}}</span> </h5>
+                  }
+                  <div class="btns d-flex justify-content-between mt-4">
+                    <button class="btn btn-outline-success"[routerLink]="['/update-profile',data]" >UpData</button>
+                    <button class="btn btn-outline-success" routerLink="/addresses">Your Addresses</button>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+    </div>
+</section>

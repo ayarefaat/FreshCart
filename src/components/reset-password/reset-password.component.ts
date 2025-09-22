@@ -26,8 +26,6 @@ export class ResetPasswordComponent {
         console.log(this.token);
         this._sharedService.login(this.token);
         this._router.navigate(['/home']);
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }

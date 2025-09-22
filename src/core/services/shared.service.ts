@@ -9,25 +9,35 @@ export class SharedService {
   constructor() { }
  decodedInfo:any;
  userID!:string;
+ userData!:any
   login(token:string){
-    sessionStorage.setItem("token",`${token}`);
+    localStorage.setItem("token",`${token}`);
   }
   logout(){
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem('userID')
+    localStorage.removeItem("token");
+    localStorage.removeItem('userID');
+    localStorage.removeItem('userData')
   }
   getToken(){
-   return sessionStorage.getItem("token");
+   return localStorage.getItem("token");
+  }
+  saveUserData(data:any){
+    let userData=JSON.stringify(data)
+    localStorage.setItem('userData',userData)
   }
   saveDecodedUser(){
-    if(sessionStorage.getItem('token')!==null){
+    if(localStorage.getItem('token')!==null){
       this.decodedInfo=jwtDecode(this.getToken()!);
       this.userID=this.decodedInfo.id;
-      sessionStorage.setItem('userID',this.decodedInfo.id)
+      console.log(this.decodedInfo)
+      localStorage.setItem('userID',this.decodedInfo.id)
       // console.log(this.userID)
     }
   }
   getUserID(){
-    return sessionStorage.getItem('userID');
+    return localStorage.getItem('userID');
   }
+ getUserData(){
+  return localStorage.getItem('userData')
+ }
 }

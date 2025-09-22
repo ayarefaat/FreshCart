@@ -4,6 +4,7 @@ import { SharedService } from '../../core/services/shared.service';
 import { IPayment } from '../../core/interfaces/ipayment';
 import { RouterLink } from '@angular/router';
 import { LoaderComponent } from "../loader/loader.component";
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-allorders',
@@ -13,7 +14,7 @@ import { LoaderComponent } from "../loader/loader.component";
   styleUrl: './allorders.component.css'
 })
 export class AllordersComponent {
-  constructor(private _paymentService:PaymentService,private _sharedService:SharedService){}
+  constructor(private _paymentService:PaymentService,private _sharedService:SharedService,private _cartService:CartService){}
   userID:any=this._sharedService.getUserID();
   ordersData!:IPayment[];
   ngOnInit(){
@@ -22,8 +23,7 @@ export class AllordersComponent {
       next:(res)=>{
         this.ordersData=res;
         console.log(this.ordersData);
-      },error:(err)=>{
-        console.log(err)
+        // this._cartService.cartCounter.next(0)
       }
     })
   }

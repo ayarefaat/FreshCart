@@ -21,8 +21,6 @@ export class ForgetPasswordComponent {
       next:(res)=>{
         console.log(res);
         this._router.navigate(['/verify-password']);
-      },error:(err)=>{
-        console.log(err)
       }
     })
   }
